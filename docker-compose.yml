@@ -1,0 +1,38 @@
+# AegisFleet Docker Compose
+# 
+# Currently only stubs ROS 2 + Gazebo services.
+# Native development is recommended for ROS 2 + Gazebo (GPU/display requirements).
+# Telemetry backend and frontend will be containerized in aegisfleet_telemetry.
+
+version: '3.8'
+
+services:
+
+  # --- Placeholder: ROS 2 + Gazebo (native recommended) ---
+  # ros2_gazebo:
+  #   image: osrf/ros:humble-desktop
+  #   network_mode: host
+  #   environment:
+  #     - DISPLAY=${DISPLAY}
+  #     - GZ_SIM_RESOURCE_PATH=/ws/install/aegisfleet_bringup/share/aegisfleet_bringup/models
+  #   volumes:
+  #     - ./ros2_ws:/ws
+  #     - /tmp/.X11-unix:/tmp/.X11-unix
+  #   devices:
+  #     - /dev/dri:/dev/dri
+  #   privileged: true
+
+  # --- Active when aegisfleet_telemetry is implemented ---
+  # telemetry_backend:
+  #   build: ./web/backend
+  #   ports:
+  #     - "8000:8000"
+  #   environment:
+  #     - ROS_DOMAIN_ID=0
+
+  # frontend:
+  #   build: ./web/frontend
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - telemetry_backend
